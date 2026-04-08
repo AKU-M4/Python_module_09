@@ -31,9 +31,9 @@ class AlienContact(BaseModel):
 
         # 1st Rule
         if not self.contact_id.startswith("AC"):
-            raise ValueError("ontact ID must start with 'AC' (Alien Contact)")
+            raise ValueError("Contact ID must start with 'AC' (Alien Contact)")
         # 2nd Rule
-        if ct == ct_physical and not self.verified:
+        if ct == ct_physical and not self.is_verified:
             raise ValueError("Physical contact reports must be verified")
         # 3rd Rule
         if ct == ct_telepathic and self.witness_count < 3:
@@ -56,7 +56,7 @@ def main() -> None:
             contact_id="AC_2024_008",
             timestamp=datetime.now(),
             location="Area 51, Nevada",
-            contact_type="radio",
+            contact_type=ContactType.radio,
             signal_strength=8.5,
             duration_minutes=45,
             witness_count=5,
